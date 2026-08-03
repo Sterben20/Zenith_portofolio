@@ -1,26 +1,112 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
-@theme inline {
+/* Custom theme variables mapping to Tailwind colors */
+@theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-border: var(--border);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  --background: #ffffff;
+  --foreground: #111111;
+  
+  --primary: #006FEE;
+  --primary-foreground: #ffffff;
+  
+  --secondary: #f3f4f6;
+  --secondary-foreground: #111111;
+  
+  --muted: #f9fafb;
+  --muted-foreground: #6b7280;
+  
+  --accent: #f3f4f6;
+  --accent-foreground: #111111;
+  
+  --border: #e5e7eb;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  
+  --primary: #338EF7;
+  --primary-foreground: #ffffff;
+  
+  --secondary: #262626;
+  --secondary-foreground: #ededed;
+  
+  --muted: #171717;
+  --muted-foreground: #a3a3a3;
+  
+  --accent: #262626;
+  --accent-foreground: #ededed;
+  
+  --border: #262626;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+
+/* Base border color for explicit border classes */
+
+/* Glassmorphism utility */
+.glass {
+  @apply bg-white/70 dark:bg-slate-900/70 backdrop-blur-md border border-white/20 dark:border-slate-800/50 shadow-sm;
+}
+.glass-card {
+  @apply bg-white/50 dark:bg-slate-900/50 backdrop-blur-lg border border-white/20 dark:border-slate-800/50 shadow-xl;
+}
+
+/* Custom UI Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-300 dark:bg-slate-700 rounded-full border-[2px] border-transparent bg-clip-padding;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-slate-400 dark:bg-slate-600;
+}
+
+/* Utility to completely hide scrollbar but keep functionality */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
