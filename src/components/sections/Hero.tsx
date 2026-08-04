@@ -101,7 +101,7 @@ export function Hero() {
           <a
             href="#projects"
             id="hero-view-work"
-            className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 rounded-xl border border-border bg-background/60 backdrop-blur-sm text-foreground font-semibold hover:bg-secondary transition-all hover:scale-[1.03] active:scale-[0.98]"
+            className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 rounded-xl border border-border/50 bg-background/40 backdrop-blur-md text-foreground font-semibold transition-all duration-300 hover:scale-[1.03] active:scale-[0.98] hover:bg-background/60 hover:border-primary/50 hover:text-primary shadow-sm hover:shadow-md dark:hover:shadow-[0_0_25px_var(--primary)]"
           >
             View My Work
           </a>

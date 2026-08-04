@@ -3,6 +3,9 @@ import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { SmoothScroll } from "@/components/ui/SmoothScroll";
+import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer";
+import { TechMarquee } from "@/components/ui/TechMarquee";
 
 const inter = Inter({
   variable: "--font-sans",
@@ -50,7 +53,17 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            {children}
+            <div className="min-h-screen flex flex-col">
+              <Navbar />
+              <div className="flex-grow">
+                {children}
+              </div>
+              <Footer />
+              {/* Fixed bottom tech marquee — always visible */}
+              <div className="fixed bottom-0 left-0 right-0 z-50">
+                <TechMarquee />
+              </div>
+            </div>
           </ThemeProvider>
         </SmoothScroll>
       </body>

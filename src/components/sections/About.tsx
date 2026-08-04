@@ -38,7 +38,7 @@ export function About() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="md:col-span-2 md:row-span-2 glass-card p-8 md:p-10 rounded-3xl flex flex-col justify-end relative overflow-hidden group hover:border-primary/30 transition-colors"
+            className="md:col-span-2 md:row-span-2 glass-card p-8 md:p-10 rounded-3xl flex flex-col justify-center relative overflow-hidden group hover:border-primary/30 transition-colors"
           >
             <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent pointer-events-none" />
             <div className="relative z-10">

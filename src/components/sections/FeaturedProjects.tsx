@@ -135,6 +135,7 @@ export function FeaturedProjects() {
                     src={project.image}
                     alt={project.title}
                     fill
+                    priority={index === 0}
                     sizes="(max-width: 768px) 85vw, (max-width: 1024px) 360px, 427px"
                     className="object-contain object-center transition-transform duration-700 group-hover/card:scale-105 p-2"
                   />
