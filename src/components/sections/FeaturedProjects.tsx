@@ -119,7 +119,7 @@ export function FeaturedProjects() {
           {/* Carousel */}
           <div
             ref={scrollContainerRef}
-            className="flex gap-6 md:gap-12 px-6 md:px-24 w-full overflow-x-auto pb-12 pt-4 no-scrollbar"
+            className="flex gap-6 md:gap-12 px-6 md:px-24 w-full overflow-x-auto pb-4 pt-4 no-scrollbar"
           >
             {projects.map((project, index) => (
               <motion.div
@@ -202,8 +202,8 @@ export function FeaturedProjects() {
           </div>
         </div>
 
-        {/* Dot Indicators — outside relative wrapper to prevent clipping */}
-        <div className="flex items-center justify-center gap-2.5 mt-6">
+        {/* Dot Indicators */}
+        <div className="flex items-center justify-center gap-3 mt-8 mb-2">
           {projects.map((_, i) => (
             <button
               key={i}
@@ -223,10 +223,14 @@ export function FeaturedProjects() {
                 });
               }}
               aria-label={`Go to project ${i + 1}`}
-              className="relative h-2 rounded-full transition-all duration-300 focus:outline-none cursor-pointer"
+              className="block rounded-full transition-all duration-300 focus:outline-none cursor-pointer border border-border/30"
               style={{
-                width: activeIndex === i ? "2rem" : "0.5rem",
-                backgroundColor: activeIndex === i ? "hsl(var(--primary))" : "hsl(var(--border))",
+                height: "10px",
+                width: activeIndex === i ? "40px" : "10px",
+                backgroundColor: activeIndex === i
+                  ? "hsl(var(--primary))"
+                  : "hsl(var(--muted-foreground) / 0.3)",
+                boxShadow: activeIndex === i ? "0 0 8px hsl(var(--primary) / 0.5)" : "none",
               }}
             />
           ))}
