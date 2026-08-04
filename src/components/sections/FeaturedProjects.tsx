@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, animate } from "framer-motion";
 import { ExternalLink, ChevronLeft, ChevronRight, Bot } from "lucide-react";
 import Link from "next/link";
@@ -48,6 +48,7 @@ const projects = [
 
 export function FeaturedProjects() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   const scroll = (direction: "left" | "right") => {
     if (!scrollContainerRef.current) return;
@@ -69,6 +70,21 @@ export function FeaturedProjects() {
       },
     });
   };
+
+  useEffect(() => {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+
+    const handleScroll = () => {
+      const card = container.firstElementChild as HTMLElement;
+      const cardWidth = card ? card.offsetWidth + 48 : container.clientWidth;
+      const index = Math.round(container.scrollLeft / cardWidth);
+      setActiveIndex(Math.min(index, projects.length - 1));
+    };
+
+    container.addEventListener("scroll", handleScroll, { passive: true });
+    return () => container.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <section id="projects" className="w-full bg-background py-24 md:py-32">
@@ -185,6 +201,60 @@ export function FeaturedProjects() {
             ))}
           </div>
         </div>
+
+        {/* Dot Indicators — outside relative wrapper to prevent clipping */}
+        <div className="flex items-center justify-center gap-2.5 mt-6">
+          {projects.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => {
+                const container = scrollContainerRef.current;
+                if (!container) return;
+                const card = container.firstElementChild as HTMLElement;
+                const cardWidth = card ? card.offsetWidth + 48 : container.clientWidth;
+                const from = container.scrollLeft;
+                const to = i * cardWidth;
+                animate(from, to, {
+                  type: "spring",
+                  stiffness: 120,
+                  damping: 22,
+                  mass: 0.6,
+                  onUpdate: (v) => { container.scrollLeft = v; },
+                });
+              }}
+              aria-label={`Go to project ${i + 1}`}
+              className="relative h-2 rounded-full transition-all duration-300 focus:outline-none cursor-pointer"
+              style={{
+                width: activeIndex === i ? "2rem" : "0.5rem",
+                backgroundColor: activeIndex === i ? "hsl(var(--primary))" : "hsl(var(--border))",
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Mobile swipe hint */}
+        <motion.div
+          className="flex md:hidden items-center justify-center gap-1.5 mt-3 text-muted-foreground/60 text-xs"
+          initial={{ opacity: 1 }}
+          animate={{ opacity: [1, 0.3, 1] }}
+          transition={{ duration: 1.8, repeat: 2, repeatType: "loop", ease: "easeInOut" }}
+        >
+          <motion.span
+            animate={{ x: [0, 6, 0] }}
+            transition={{ duration: 1.8, repeat: 2, repeatType: "loop", ease: "easeInOut" }}
+            className="text-base"
+          >
+            👈
+          </motion.span>
+          <span className="font-medium tracking-wide">Swipe to explore</span>
+          <motion.span
+            animate={{ x: [0, -6, 0] }}
+            transition={{ duration: 1.8, repeat: 2, repeatType: "loop", ease: "easeInOut" }}
+            className="text-base"
+          >
+            👉
+          </motion.span>
+        </motion.div>
       </div>
     </section>
   );
