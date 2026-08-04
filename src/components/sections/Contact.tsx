@@ -43,7 +43,7 @@ export function Contact() {
         >
           <MagneticButton>
             <a
-              href="mailto:jayadiaghil@gmail.com"
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=jayadiaghil@gmail.com"
               target="_blank"
               rel="noopener noreferrer"
               className="group flex items-center justify-center px-8 py-4 rounded-2xl bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition-all shadow-xl shadow-primary/25 hover:scale-[1.02] active:scale-[0.98] w-full sm:w-auto"
