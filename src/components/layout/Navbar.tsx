@@ -85,7 +85,7 @@ export function Navbar() {
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: i * 0.06 }}
-                className="py-3 px-2 text-base font-medium rounded-xl hover:bg-secondary/60 transition-colors border-b border-border/30 last:border-0"
+                className="py-3 px-2 text-base font-medium rounded-xl hover:bg-primary/15 transition-colors border-b border-border/30 last:border-0"
               >
                 {link.label}
               </motion.a>
