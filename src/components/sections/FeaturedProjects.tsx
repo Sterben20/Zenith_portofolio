@@ -223,42 +223,14 @@ export function FeaturedProjects() {
                 });
               }}
               aria-label={`Go to project ${i + 1}`}
-              className="block rounded-full transition-all duration-300 focus:outline-none cursor-pointer border border-border/30"
-              style={{
-                height: "10px",
-                width: activeIndex === i ? "40px" : "10px",
-                backgroundColor: activeIndex === i
-                  ? "hsl(var(--primary))"
-                  : "hsl(var(--muted-foreground) / 0.3)",
-                boxShadow: activeIndex === i ? "0 0 8px hsl(var(--primary) / 0.5)" : "none",
-              }}
+              className={`block h-2.5 rounded-full transition-all duration-300 focus:outline-none cursor-pointer ${
+                activeIndex === i
+                  ? "w-8 bg-primary"
+                  : "w-2.5 bg-muted-foreground/40"
+              }`}
             />
           ))}
         </div>
-
-        {/* Mobile swipe hint */}
-        <motion.div
-          className="flex md:hidden items-center justify-center gap-1.5 mt-3 text-muted-foreground/60 text-xs"
-          initial={{ opacity: 1 }}
-          animate={{ opacity: [1, 0.3, 1] }}
-          transition={{ duration: 1.8, repeat: 2, repeatType: "loop", ease: "easeInOut" }}
-        >
-          <motion.span
-            animate={{ x: [0, 6, 0] }}
-            transition={{ duration: 1.8, repeat: 2, repeatType: "loop", ease: "easeInOut" }}
-            className="text-base"
-          >
-            👈
-          </motion.span>
-          <span className="font-medium tracking-wide">Swipe to explore</span>
-          <motion.span
-            animate={{ x: [0, -6, 0] }}
-            transition={{ duration: 1.8, repeat: 2, repeatType: "loop", ease: "easeInOut" }}
-            className="text-base"
-          >
-            👉
-          </motion.span>
-        </motion.div>
       </div>
     </section>
   );
