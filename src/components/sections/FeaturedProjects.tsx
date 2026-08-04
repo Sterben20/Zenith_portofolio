@@ -223,10 +223,10 @@ export function FeaturedProjects() {
                 });
               }}
               aria-label={`Go to project ${i + 1}`}
-              className={`block h-2.5 rounded-full transition-all duration-300 focus:outline-none cursor-pointer ${
+              className={`block h-1.5 rounded-full transition-all duration-300 focus:outline-none cursor-pointer ${
                 activeIndex === i
-                  ? "w-8 bg-primary"
-                  : "w-2.5 bg-muted-foreground/40"
+                  ? "w-5 bg-primary"
+                  : "w-1.5 bg-muted-foreground/40"
               }`}
             />
           ))}
